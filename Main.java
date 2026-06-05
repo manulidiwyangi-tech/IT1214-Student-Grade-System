@@ -51,7 +51,7 @@ public class Main {
     int choice;
 
     do{
-        System.out.println("=================Student Grade Management System=========================");
+        System.out.println("\n================= Student Grade Management System =========================");
         
         System.out.println("1.Add New Student Recode");
         System.out.println("2.View All Student Records");
@@ -59,7 +59,7 @@ public class Main {
         System.out.println("4.Calculate Average Marks");
         System.out.println("5.Exit");
 
-        System.out.println("Enter your choice 1-5 :");
+        System.out.println("\nEnter your choice 1-5 :");
         choice= sc.nextInt();
 
         switch(choice){
@@ -99,10 +99,52 @@ public class Main {
 
             case 3:
                 System.out.println("");
+                System.out.println("3.Search Student by ID");
+
+                if(studentList.size()==0){
+                    System.out.println("Sorry....No student records available");
+                    }
+                    else{
+                        System.out.println("Enter Student ID to search : ");
+                        int stId = sc.nextInt();
+                        boolean found=false;
+
+                        for(Student s : studentList){
+                            if(s.getStudentID()== stId){
+                                System.out.println("\nStudent Found");
+                                System.out.println("ID      : "+ s.getStudentID());
+                                System.out.println("Name    : "+ s.getStudentName());
+                                System.out.println("Marks   : "+ s.getMarks());
+                                found=true;
+                                break;
+                            }
+
+                        }
+                        if(found==false){
+                            System.out.println("Student with ID " + stId + " not found.");
+                        }
+                    }
                 break;
 
             case 4:
                 System.out.println("");
+                System.out.println("4.Calculate Average Marks");
+
+                if(studentList.size()==0){
+                    System.out.println("Sorry....No student records available");
+                }
+                else{
+                    double totalMarks=0;
+
+                    for(Student s: studentList){
+                        totalMarks=totalMarks + s.getMarks();
+                    }
+
+                    double average = totalMarks/studentList.size();
+                    System.out.println("Total Students : " + studentList.size());
+                    System.out.println("Total Marks    : " + totalMarks);
+                    System.out.println("Average Marks  : " + average);
+                }
                 break;
             
             case 5:
